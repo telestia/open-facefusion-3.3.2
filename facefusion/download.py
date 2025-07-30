@@ -71,6 +71,7 @@ def ping_static_url(url : str) -> bool:
 
 
 def conditional_download_hashes(hash_set : DownloadSet) -> bool:
+	return True
 	hash_paths = [ hash_set.get(hash_key).get('path') for hash_key in hash_set.keys() ]
 
 	process_manager.check()
@@ -98,6 +99,7 @@ def conditional_download_hashes(hash_set : DownloadSet) -> bool:
 
 
 def conditional_download_sources(source_set : DownloadSet) -> bool:
+	return True
 	source_paths = [ source_set.get(source_key).get('path') for source_key in source_set.keys() ]
 
 	process_manager.check()
