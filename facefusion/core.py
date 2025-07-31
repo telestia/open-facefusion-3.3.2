@@ -366,8 +366,6 @@ def conditional_append_reference_faces() -> None:
 
 
 def process_image(start_time : float) -> ErrorCode:
-	if analyse_image(state_manager.get_item('target_path')):
-		return 3
 
 	logger.debug(wording.get('clearing_temp'), __name__)
 	clear_temp_directory(state_manager.get_item('target_path'))
