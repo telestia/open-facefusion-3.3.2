@@ -32,7 +32,6 @@ def cli() -> None:
 	if pre_check():
 		signal.signal(signal.SIGINT, signal_exit)
 		program = create_program()
-
 		if validate_args(program):
 			args = vars(program.parse_args())
 			apply_args(args, state_manager.init_item)
@@ -55,6 +54,7 @@ def route(args : Args) -> None:
 		limit_system_memory(system_memory_limit)
 
 	if state_manager.get_item('command') == 'force-download':
+		logger.info("Force Download oluyor")
 		error_code = force_download()
 		return hard_exit(error_code)
 
@@ -321,6 +321,7 @@ def process_step(job_id : str, step_index : int, step_args : Args) -> bool:
 
 	logger.info(wording.get('processing_step').format(step_current = step_index + 1, step_total = step_total), __name__)
 	if common_pre_check() and processors_pre_check():
+		logger.info("Common pre check ve processorts pre check tamamlandi")
 		error_code = conditional_process()
 		return error_code == 0
 	return False
@@ -334,7 +335,7 @@ def conditional_process() -> ErrorCode:
 			return 2
 
 	conditional_append_reference_faces()
-
+	logger.info("condional process reference faceler islendi")
 	if is_image(state_manager.get_item('target_path')):
 		return process_image(start_time)
 	if is_video(state_manager.get_item('target_path')):
