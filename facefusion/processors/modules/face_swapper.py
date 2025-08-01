@@ -459,12 +459,21 @@ def pre_process(mode : ProcessMode) -> bool:
 	if not has_image(state_manager.get_item('source_paths')):
 		logger.error(wording.get('choose_image_source') + wording.get('exclamation_mark'), __name__)
 		return False
+	logger.info("Face Swapper pre process before filter image paths", __name__)
 	source_image_paths = filter_image_paths(state_manager.get_item('source_paths'))
+	logger.info("Face Swapper pre process after filter image paths", __name__)
+
 	source_frames = read_static_images(source_image_paths)
+	logger.info("Face Swapper pre process after read_static_images", __name__)
+
 	source_faces = get_many_faces(source_frames)
+	logger.info("Face Swapper pre process after get_many_faces", __name__)
+
 	if not get_one_face(source_faces):
 		logger.error(wording.get('no_source_face_detected') + wording.get('exclamation_mark'), __name__)
 		return False
+	logger.info("Face Swapper pre process after get_one_face", __name__)
+
 	if mode in [ 'output', 'preview' ] and not is_image(state_manager.get_item('target_path')) and not is_video(state_manager.get_item('target_path')):
 		logger.error(wording.get('choose_image_or_video_target') + wording.get('exclamation_mark'), __name__)
 		return False

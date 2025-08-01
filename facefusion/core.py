@@ -336,7 +336,6 @@ def conditional_process() -> ErrorCode:
 	logger.info("condional process get_processors_modules calisti", __name__)
 
 	conditional_append_reference_faces()
-	logger.info("condional process reference faceler islendi", __name__)
 	if is_image(state_manager.get_item('target_path')):
 		return process_image(start_time)
 	if is_video(state_manager.get_item('target_path')):
