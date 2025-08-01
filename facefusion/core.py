@@ -329,10 +329,13 @@ def process_step(job_id : str, step_index : int, step_args : Args) -> bool:
 def conditional_process() -> ErrorCode:
 	start_time = time()
 
+	
 	for processor_module in get_processors_modules(state_manager.get_item('processors')):
 		if not processor_module.pre_process('output'):
 			return 2
-	logger.info("condional process get_processors_modules calisti", __name__)
+	end_time = time()
+	
+	logger.info(f"condional process get_processors_modules calisti ${end_time - start_time}", __name__)
 
 	conditional_append_reference_faces()
 	if is_image(state_manager.get_item('target_path')):

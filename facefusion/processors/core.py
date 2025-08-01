@@ -48,9 +48,7 @@ def get_processors_modules(processors : List[str]) -> List[ModuleType]:
 	processor_modules = []
 
 	for processor in processors:
-		logger.info(f"Processer Load islemi basliyor ${processor}", __name__)
 		processor_module = load_processor_module(processor)
-		logger.info(f"Processer Load islemi bitti ${processor}", __name__)
 		processor_modules.append(processor_module)
 	return processor_modules
 
