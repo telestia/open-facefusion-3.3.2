@@ -321,7 +321,6 @@ def process_step(job_id : str, step_index : int, step_args : Args) -> bool:
 
 	logger.info(wording.get('processing_step').format(step_current = step_index + 1, step_total = step_total), __name__)
 	if common_pre_check() and processors_pre_check():
-		logger.info("Common pre check ve processorts pre check tamamlandi", __name__)
 		error_code = conditional_process()
 		return error_code == 0
 	return False
@@ -333,7 +332,8 @@ def conditional_process() -> ErrorCode:
 	for processor_module in get_processors_modules(state_manager.get_item('processors')):
 		if not processor_module.pre_process('output'):
 			return 2
-
+	logger.info("condional process get_processors_modules calisti", __name__)
+	
 	conditional_append_reference_faces()
 	logger.info("condional process reference faceler islendi", __name__)
 	if is_image(state_manager.get_item('target_path')):
