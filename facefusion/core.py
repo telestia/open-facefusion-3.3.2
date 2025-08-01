@@ -330,7 +330,6 @@ def conditional_process() -> ErrorCode:
 	start_time = time()
 
 	for processor_module in get_processors_modules(state_manager.get_item('processors')):
-		logger.info(f"${processor_module} Pre processe basliyor", __name__)
 		if not processor_module.pre_process('output'):
 			return 2
 	logger.info("condional process get_processors_modules calisti", __name__)
